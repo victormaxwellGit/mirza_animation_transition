@@ -82,53 +82,36 @@ extension GameViewController{
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
        
         if let touch = touch{
-            print(animation)
-//            if animation == false{
-//
-//                player.childNode(withName: "mirza", recursively: true)!.animationPlayer(forKey: "run")?.play()
-//
-//                animation = true
-//            }
 
             let touchLocation = touch.location(in: self.view)
             if gameView.virtualDPad().contains(touchLocation){
+                if animation == false{
+                    player.run()
+                    animation = true
+                }
 
-                print("Move")
- 
-                            if animation == false{
-            player.run()
-//                                player.childNode(withName: "mirza", recursively: true)!.animationPlayer(forKey: "run")?.play()
-//                
-                                animation = true
-                            }
-//
                 
-                let middleOfCircleX = gameView.virtualDPad().origin.x + 75
-                let middleOfCircleY = gameView.virtualDPad().origin.y + 75
+            let middleOfCircleX = gameView.virtualDPad().origin.x + 75
+            let middleOfCircleY = gameView.virtualDPad().origin.y + 75
 
-                let lengthOfX = Float(touchLocation.x - middleOfCircleX)
-                let legthOfY = Float(touchLocation.y - middleOfCircleY)
+            let lengthOfX = Float(touchLocation.x - middleOfCircleX)
+            let legthOfY = Float(touchLocation.y - middleOfCircleY)
 
-                direction = SIMD2<Float>(x: lengthOfX, y: legthOfY)
-                direction = normalize(direction)
+            direction = SIMD2<Float>(x: lengthOfX, y: legthOfY)
+            direction = normalize(direction)
 
-                let degree = atan2(direction.x, direction.y)
-                player.directionAngle = degree
+            let degree = atan2(direction.x, direction.y)
+            player.directionAngle = degree
 
-            }
-
-//            if gameView.virtualBot(positionBotY: 230, positionBotX:  559).contains(touchLocation){
-//                print("botão pressionado")
-//            }
         }
+
+    }
 }
     func resetInteraction() {
             touch = nil
             direction = SIMD2<Float>(x: 0.0, y: 0.0)
             
     }
-
-
 
 }
 
