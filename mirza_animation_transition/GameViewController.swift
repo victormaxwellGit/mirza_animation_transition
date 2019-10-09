@@ -52,13 +52,20 @@ extension GameViewController{
         let touchLocation = (touch?.location(in: self.view))!
        
         
-        
+        //############Action Kick Button#################
         if gameView.virtualBot(positionBotY: 230, positionBotX: 559).contains(touchLocation){
 
-            print("botão pressionado")
-
+            player.kick()
+            animation = false
+            print ("botJump")
+            
+        }
+        //############Action Attack Button#################
+        else if gameView.virtualBot(positionBotY: 265, positionBotX: 528).contains(touchLocation){
+           
             player.lightAttack()
             animation = false
+            print ("botAttack")
         }
      
     }

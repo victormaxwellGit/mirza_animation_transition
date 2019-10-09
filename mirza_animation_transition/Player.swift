@@ -42,10 +42,7 @@ class Player: SCNNode{
     }
     
     func idle(){
-//        let idleAnimation = Player.loadAnimation(fromSceneNamed: "art.scnassets/mirza/idle.scn")
-//        idleAnimation.play()
         model.animationPlayer(forKey: "idle")?.play()
-//        model.addAnimationPlayer(idleAnimation, forKey: "idle")
     }
     func run(){
         if(stateMachine?.enter(RunState.self) ?? false){
@@ -53,28 +50,21 @@ class Player: SCNNode{
            self.childNode(withName: "mirza", recursively: true)!.animationPlayer(forKey: "run")?.play()
         }
     }
-    func jump(){
-        
-        
+    func kick(){
+        self.childNode(withName: "mirza", recursively: true)!.animationPlayer(forKey: "kick")?.play()
     }
-    func powerAttack(){
-        
-        
+    func kickStop(){
+          self.childNode(withName: "mirza", recursively: true)!.animationPlayer(forKey: "kick")?.stop(withBlendOutDuration: 0.1)
     }
-    func dead(){
-        
-        
-    }
+ 
     
     func setupPlayer(){
         
         name = "Player"
-        
         let scene = SCNScene(named: "art.scnassets/mirza/mirza.scn")!
         model = scene.rootNode.childNode(withName: "mirza", recursively: true)!
         position = SCNVector3Make(0.0, 0.0, 0.0)
         scale = SCNVector3Make(0.3, 0.3, 0.3)
-        
         addChildNode(model)
     }
     
@@ -104,19 +94,26 @@ class Player: SCNNode{
             self.setIdleInPlayer()})]
         
         model.addAnimationPlayer(attackAnimation, forKey: "attack")
-        attackAnimation.stop()
+        attackAnimation.stop(withBlendOutDuration: 0.2)
        
-        //################# JUMP ANIMATION ######################
         
+        //################# KICK ANIMATION #################
         
-        //################# POWER ATTACK ANIMATION #################
+        let kickAnimation = Player.loadAnimation(fromSceneNamed: "art.scnassets/mirza/kick.scn")
+        kickAnimation.animation.blendInDuration = 0.2
+        kickAnimation.animation.animationEvents = [SCNAnimationEvent(keyTime: 1, block: {_,_,_ in
+            
+            self.setIdleInPlayer()})]
         
+        model.addAnimationPlayer(kickAnimation, forKey: "kick")
+        attackAnimation.stop()
         
         //################# DEAD ANIMATION ######################
         
     }
     func setIdleInPlayer(){
         lightAttackStop()
+        kickStop()
         stateMachine?.enter(IdleState.self)
     }
     
