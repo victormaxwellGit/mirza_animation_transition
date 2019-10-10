@@ -98,7 +98,7 @@ class Player: SCNNode{
         attackAnimation.stop(withBlendOutDuration: 0.2)
        UNCOMMENT THIS FIRST */
        
-        /*
+        /* UNCOMMENT THIS FOR SECOND
         //################# KICK ANIMATION #################
         
         let kickAnimation = Player.loadAnimation(fromSceneNamed: "art.scnassets/mirza/kick.scn")
@@ -112,7 +112,7 @@ class Player: SCNNode{
         
         
         //################# DEAD ANIMATION ######################
-        */
+        UNCOMMENT THIS FOR SECOND */
     }
     func setIdleInPlayer(){
         lightAttackStop()
