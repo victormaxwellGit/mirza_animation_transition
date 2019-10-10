@@ -72,8 +72,8 @@ class Player: SCNNode{
         
         //################# IDLE ANIMATION ######################
         let idleAnimation = Player.loadAnimation(fromSceneNamed: "art.scnassets/mirza/idle.scn")
-        idleAnimation.play()
         
+        idleAnimation.play()
         model.animationPlayer(forKey: "idle")?.play()
         model.addAnimationPlayer(idleAnimation, forKey: "idle")
         
@@ -101,12 +101,13 @@ class Player: SCNNode{
         
         let kickAnimation = Player.loadAnimation(fromSceneNamed: "art.scnassets/mirza/kick.scn")
         kickAnimation.animation.blendInDuration = 0.2
+        attackAnimation.stop()
         kickAnimation.animation.animationEvents = [SCNAnimationEvent(keyTime: 1, block: {_,_,_ in
             
             self.setIdleInPlayer()})]
         
         model.addAnimationPlayer(kickAnimation, forKey: "kick")
-        attackAnimation.stop()
+        
         
         //################# DEAD ANIMATION ######################
         

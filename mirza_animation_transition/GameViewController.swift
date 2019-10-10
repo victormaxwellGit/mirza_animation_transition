@@ -89,15 +89,15 @@ extension GameViewController{
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
        
         if let touch = touch{
-
+            //############Action Run Stick#################
             let touchLocation = touch.location(in: self.view)
+            
             if gameView.virtualDPad().contains(touchLocation){
                 if animation == false{
                     player.run()
                     animation = true
                 }
 
-                
             let middleOfCircleX = gameView.virtualDPad().origin.x + 75
             let middleOfCircleY = gameView.virtualDPad().origin.y + 75
 
