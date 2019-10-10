@@ -85,6 +85,7 @@ class Player: SCNNode{
         model.addAnimationPlayer(runAnimation, forKey: "run")
         runAnimation.stop()
         
+       /*  UNCOMMENT THIS FIRST
         //################# ATTACK ANIMATION ######################
         
         let attackAnimation = Player.loadAnimation(fromSceneNamed: "art.scnassets/mirza/attack.scn")
@@ -95,8 +96,9 @@ class Player: SCNNode{
         
         model.addAnimationPlayer(attackAnimation, forKey: "attack")
         attackAnimation.stop(withBlendOutDuration: 0.2)
+       UNCOMMENT THIS FIRST */
        
-        
+        /*
         //################# KICK ANIMATION #################
         
         let kickAnimation = Player.loadAnimation(fromSceneNamed: "art.scnassets/mirza/kick.scn")
@@ -110,7 +112,7 @@ class Player: SCNNode{
         
         
         //################# DEAD ANIMATION ######################
-        
+        */
     }
     func setIdleInPlayer(){
         lightAttackStop()
